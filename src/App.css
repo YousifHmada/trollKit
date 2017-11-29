@@ -1,0 +1,41 @@
+*{
+      box-sizing: border-box;
+}
+.compiledCodeWrapper{
+  flex: 1;
+}
+.inputCodeWrapper{
+  flex: 1;
+  display: flex;
+}
+.numbersList{
+  text-align: right;
+  padding: 8px;
+  padding-top: 1px;
+  border-right: 1px solid gray;
+  margin-right: 10px;
+}
+#textarea{
+  width: 300px;
+}
+#textarea p{
+  margin: 0px 0px 10.45135px;
+}
+#textarea p:first-child{
+  margin-top: 10px;
+}
+#textarea:focus{
+  outline: none;
+  border: 0px solid;
+}
+.special{
+  color: blue;
+}
+
+[contentEditable=true]:empty:not(:focus):before{
+    content:attr(data-text)
+}
+
+.flexContainer{
+  display: flex;
+}
