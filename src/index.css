@@ -4,4 +4,10 @@ body {
   font-family: sans-serif;
   font-size: 1.5em;
   font-size: large;
+  background-color: #1f252a;
+  color: #868e98;
+}
+
+::-webkit-scrollbar { 
+    display: none; 
 }

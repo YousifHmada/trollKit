@@ -4,7 +4,7 @@ import './App.css';
 class App extends Component {
   constructor() {
     super();
-    document.execCommand("DefaultParagraphSeparator", true, "p");
+    document.execCommand("DefaultParagraphSeparator", false, "p");
     this.state = {
       'code': [],
       'breaks': [26]
@@ -26,10 +26,23 @@ class App extends Component {
 
   inputCodeChanged(e) {
     //let text = e.target.value.replace(/c/g,'0011');
-    if(e.target.innerHTML.match(/match/g)!=null){
-      var text = e.target.innerHTML.replace(/match/g,  '<span class="special" contentEditable="false">special</span><span class="rest">&nbsp;</span>')
-      this.replaceTextWith(text);
-      
+    if(e.target.innerHTML.match(/((\$add)|(\$sub))(?!<span class="terminate">)/g)!= null){
+      var text = e.target.innerHTML.replace(/((\$add)|(\$sub))(?!<span class="terminate">)/g,  function($0){
+        return '<span class="schema-light-color-0" contentEditable="false">'+$0+'<span class="terminate"></span></span><span class="rest schema-light-white-1">&nbsp;</span>'
+      });
+      this.replaceTextWith(text);   
+    }
+    if(e.target.innerHTML.match(/((\$sw)|(\$lw))(?!<span class="terminate">)/g)!= null){
+      var text = e.target.innerHTML.replace(/((\$sw)|(\$lw))(?!<span class="terminate">)/g,  function($0){
+        return '<span class="schema-light-color-2" contentEditable="false">'+$0+'<span class="terminate"></span></span><span class="rest schema-light-color-3">&nbsp;</span>'
+      });
+     this.replaceTextWith(text);   
+    }
+    if(e.target.innerHTML.match(/(\(.?\))(?!<span class="terminate">)/g)!= null){
+      var text = e.target.innerHTML.replace(/(\(.?\))(?!<span class="terminate">)/g,  function($0){
+        return '<span class="schema-light-color-4" contentEditable="true">'+$0+'<span class="terminate"></span></span><span class="rest schema-light-white-1">&nbsp;</span>'
+      });
+     this.replaceTextWith(text);   
     }
     var code = [];
     var text = '';
@@ -74,12 +87,14 @@ class App extends Component {
       });
     }
     return (
-      <div className="container">
-        <h1>Assembly Board</h1>
-        <div className="flexContainer">
+      <div className="container board">
+        <div className="header">
+          <h1>Assembly Board</h1>
+        </div>
+        <div className="flexContainer schema-light-white-1">
           <div className="inputCodeWrapper">
-            <div className="numbersList">{ listOflines(this.state.breaks) }</div>
-            <div onKeyUp={ this.inputCodeChanged.bind(this) } id="textarea" contentEditable data-text="Enter your code here"></div>
+            <div className="numbersList schema-light-white-0">{ listOflines(this.state.breaks) }</div>
+            <div onKeyUp={ this.inputCodeChanged.bind(this) } id="textarea" spellCheck="false" contentEditable data-text="Enter your code here"></div>
           </div>
           <div className="compiledCodeWrapper">{ codeLines(this.state.code) }</div>
         </div>

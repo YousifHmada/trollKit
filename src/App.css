@@ -1,18 +1,41 @@
 *{
       box-sizing: border-box;
 }
+.board{
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  height: 100vh;
+}
+.header{
+  display: block;
+  padding: 10px 0px;
+  overflow: hidden;
+  height: 15%;
+}
 .compiledCodeWrapper{
   flex: 1;
+  background-color: #343D46;
+  padding: 10px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  overflow-wrap: break-word;
 }
 .inputCodeWrapper{
   flex: 1;
   display: flex;
+  background-color: #343D46;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-right: 20px;
+  padding-right: 20px;
+  overflow-y: scroll;
 }
 .numbersList{
   text-align: right;
-  padding: 8px;
+  padding: 10px;
   padding-top: 0px;
-  border-right: 1px solid gray;
   margin-right: 10px;
 }
 .numbersList p{
@@ -20,7 +43,9 @@
  font-size: 18px;
 }
 #textarea{
-  width: 300px;
+  flex: 1;
+  overflow-wrap: break-word;
+  overflow-x: hidden;
 }
 #textarea p{
   margin:0px;
@@ -33,7 +58,6 @@
   border: 0px solid;
 }
 .special{
-  color: blue;
 }
 
 [contentEditable=true]:empty:not(:focus):before{
@@ -42,4 +66,35 @@
 
 .flexContainer{
   display: flex;
+  height: 80%;
+  padding-bottom: 20px; 
+}
+
+.schema-light-white-0{
+  color : #868e98;
+}
+
+.schema-light-white-1{
+  color : #d8dee9;
+}
+
+.schema-light-color-0{
+  color : #c594c5;
+}
+
+.schema-light-color-1{
+  color : #f9ae58;
+}
+
+.schema-light-color-2{
+  color : #ec5f67;
+}
+
+.schema-light-color-3{
+  color : #6699cc;
+}
+
+
+.schema-light-color-4{
+  color :#99c794;
 }
