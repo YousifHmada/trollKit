@@ -2,9 +2,12 @@
   "name": "trollkit",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://yousifhmada.github.io/trollKit/",
+  "homepage": "https://yousifhmada.github.io/",
   "dependencies": {
+    "binstring": "^0.2.1",
     "bootstrap": "^3.3.7",
+    "express": "^4.16.2",
+    "lodash": "^4.17.4",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
     "react-scripts": "1.0.17"
