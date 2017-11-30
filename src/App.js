@@ -34,12 +34,13 @@ class App extends Component {
     var code = [];
     var text = '';
     var breaks = [];
+    breaks.push(26);
     document.getElementById('textarea').childNodes.forEach(function(node){
       if(node.tagName == 'SPAN')
       {
         text+= node.textContent;
       }else if(node.tagName == 'P'){
-        breaks.push(node.clientHeight)
+        breaks.push((node.clientHeight) <= 27 ? 26 : 52)
         if(text != null){
           code.push(text);
         }
@@ -50,7 +51,6 @@ class App extends Component {
         }
         text = null;
       }else{
-        breaks.push(node.clientHeight)
         text = node.textContent;
       }
     });
