@@ -23,8 +23,11 @@
   height: calc(50% - 8px);
   background-color: #343D46;
   padding: 10px;
+  padding-left: 12px;
   overflow-x: hidden;
   overflow-wrap: break-word;
+  font-size: 18px;
+  text-align: center;
 }
 .afterRun{
   height: calc(50% - 8px);

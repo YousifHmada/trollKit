@@ -1,11 +1,14 @@
 const express = require("express");
 const _ = require("lodash");
-var conv = require('binstring');
+var bodyParser = require('body-parser');
 
 let app = express();
 
+app.use(bodyParser.json());
 app.use(express.static('build'));
-
+app.use(bodyParser.urlencoded({
+  extended: true
+})); 
 
 var registers = [];
 var flag = 0;
@@ -55,7 +58,7 @@ instructions['sll'] = {format:'R',op:0,funct:0};
 instructions['beq'] = {format:'I',op:4};
 
 var decode = (command)=>{
-	var output = '';
+	var output = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
 	command = command.split(/[\s, \(\))]+/);
 	if(command[0].match(/(add$)|(and$)|(or$)/) != null){
 		var op = 0, shift = 0;
@@ -91,19 +94,40 @@ var decode = (command)=>{
 
 var compile = function(arr){
 	return new Promise((resolve, reject)=>{
+		if(arr.length == 0)reject();
 		resolve(arr.map(decode));
 	});
 }
 
 
-app.get('/compile', (req, res)=>{
-	let arr = ["add $t0, $s2, $t0", "lw $t0, 1200 ($t1)", "beq $s3, $s4, 3", "sw $t0, 1200 ($t1)"];
+
+app.post('/compile', (req, res)=>{
+	let arr = req.body.data;
 	compile(arr)
 		.then((result)=>{
-			res.status(200).json({
+			res.status(200).send({
 				success: true,
-				results: result
+				input: arr,
+				output: result
+			}); 
+		})
+		.catch(()=>{
+			res.status(400).send({
+				success: false
 			});
+		})
+});
+
+
+app.get('/compile', (req, res)=>{
+	let arr = ["addx $s0 $s0 $s1", "add $s0 $s0 $s1", "add $s0 $s0 $s1"];
+	compile(arr)
+		.then((result)=>{
+			res.status(200).send({
+				success: true,
+				input: arr,
+				output: result
+			}); 
 		})
 		.catch(()=>{
 			res.status(400).json({
