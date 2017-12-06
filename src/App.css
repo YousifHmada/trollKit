@@ -16,7 +16,7 @@
 }
 .output{
   flex: 1;
-  overflow-y: scroll;
+  overflow: hidden;
 }
 .compiledCodeWrapper{
   margin-bottom: 16px;
@@ -33,6 +33,7 @@
   height: calc(50% - 8px);
   background-color: #343D46;
   padding: 10px;
+  text-align: center;
   overflow-x: hidden;
   overflow-wrap: break-word;
 }
@@ -100,7 +101,7 @@
 
 .flexContainer{
   display: flex;
-  height: 80%;
+  height: calc(80% - 32px);
   padding-bottom: 20px; 
 }
 
@@ -131,4 +132,25 @@
 
 .schema-light-color-4{
   color :#99c794;
+}
+
+.Disabled{
+  background: #ec5f67;
+}
+.Disabled:hover{
+  background: #ec5f67;
+  color: white;
+}
+
+.pathInput{
+  width: 100%;
+  height: 32px;
+  color: #343D46;
+  overflow: hidden;
+  margin: 8px auto;
+}
+.pathInput input{
+  width: 100%;
+  padding: 1px 10px;
+  font-size: 16px;
 }
